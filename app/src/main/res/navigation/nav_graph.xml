@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/page_1">
+
+    <fragment
+        android:id="@+id/page_1"
+        android:name="com.wh.wanandroid.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/page_2"
+        android:name="com.wh.wanandroid.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/page_3"
+        android:name="com.wh.wanandroid.ProjectFragment"
+        android:label="fragment_project"
+        tools:layout="@layout/fragment_project" />
+    <fragment
+        android:id="@+id/page_4"
+        android:name="com.wh.wanandroid.SquareFragment"
+        android:label="fragment_square"
+        tools:layout="@layout/fragment_square" />
+    <fragment
+        android:id="@+id/page_5"
+        android:name="com.wh.wanandroid.SystemFragment"
+        android:label="fragment_system"
+        tools:layout="@layout/fragment_system" />
+</navigation>

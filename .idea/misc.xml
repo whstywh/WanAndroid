@@ -3,7 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/projects/WanAndroid/app/src/main/res/drawable/ic_launcher_background.xml" value="0.216" />
+        <entry key="..\:/projects/WanAndroid/app/src/main/res/drawable/icon_page_1.xml" value="0.216" />
         <entry key="..\:/projects/WanAndroid/app/src/main/res/layout/activity_main.xml" value="0.3390625" />
+        <entry key="..\:/projects/WanAndroid/app/src/main/res/layout/fragment_account.xml" value="0.3536458333333333" />
+        <entry key="..\:/projects/WanAndroid/app/src/main/res/layout/fragment_home.xml" value="0.3536458333333333" />
+        <entry key="..\:/projects/WanAndroid/app/src/main/res/layout/fragment_project.xml" value="0.3536458333333333" />
+        <entry key="..\:/projects/WanAndroid/app/src/main/res/layout/fragment_square.xml" value="0.3390625" />
+        <entry key="..\:/projects/WanAndroid/app/src/main/res/layout/fragment_system.xml" value="0.3536458333333333" />
+        <entry key="..\:/projects/WanAndroid/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.3536458333333333" />
+        <entry key="..\:/projects/WanAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.216" />
+        <entry key="..\:/projects/WanAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1835" />
       </map>
     </option>
   </component>
