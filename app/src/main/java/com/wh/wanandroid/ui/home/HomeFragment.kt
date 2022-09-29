@@ -1,13 +1,15 @@
-package com.wh.wanandroid
+package com.wh.wanandroid.ui.home
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.wh.wanandroid.base.BaseFragment
 import com.wh.wanandroid.databinding.FragmentHomeBinding
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
     companion object {
         /**
@@ -28,7 +30,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
     }
 
-    override fun getViewBinding(): FragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
+    override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?) =
+        FragmentHomeBinding.inflate(inflater, container, false)
+
 
     override fun initView() {
 
