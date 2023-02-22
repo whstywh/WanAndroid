@@ -5,30 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
-import kotlin.reflect.KClass
 
-abstract class BaseFragment<VM : ViewModel, VB : ViewBinding> : Fragment() {
+abstract class BaseFragment<VB : ViewBinding> : Fragment() {
 
     protected lateinit var binding: VB
-    protected lateinit var viewModel: VM
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = getViewBinding(inflater, container)
-        return binding.root
+        return if (this::binding.isInitialized) {
+            return binding.root
+        } else null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val clazz = this.javaClass.kotlin.supertypes[0].arguments[0].type!!.classifier!! as KClass<VM>
-//        viewModel = ViewModelProvider(this).get(clazz)
-        initView()
+        if (savedInstanceState == null) {
+            initView()
+        }
         initData()
     }
 

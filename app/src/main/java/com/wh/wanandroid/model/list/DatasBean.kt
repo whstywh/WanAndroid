@@ -1,4 +1,4 @@
-package com.wh.wanandroid.model
+package com.wh.wanandroid.model.list
 
 data class DatasBean(
     val niceDate: String,

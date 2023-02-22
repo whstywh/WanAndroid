@@ -1,6 +1,4 @@
-package com.wh.wanandroid.model.home
-
-import com.wh.wanandroid.model.DatasBean
+package com.wh.wanandroid.model.list
 
 data class HomeDataFeed(
     val curPage: Int,

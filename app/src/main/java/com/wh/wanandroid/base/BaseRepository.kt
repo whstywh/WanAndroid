@@ -19,7 +19,7 @@ open class BaseRepository {
     }
 
     suspend fun <T : Any> handleResponse(
-        response: BaseModel<T>
+        response: BaseFeedBean<T>
     ): NetResult<T> {
         return coroutineScope {
             if (response.errorCode == 0) {
