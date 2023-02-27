@@ -10,11 +10,10 @@ import com.wh.wanandroid.bean.home.BannerBean
 import com.wh.wanandroid.net.NetResult
 import kotlinx.coroutines.launch
 
-class HomeViewModel() : BaseViewModel() {
+class HomeViewModel : BaseViewModel() {
 
     private val bannerLiveDataM = MutableLiveData<List<BannerBean>>()
-    val bannerLiveData: LiveData<List<BannerBean>>
-        get() = bannerLiveDataM
+    val bannerLiveData: LiveData<List<BannerBean>> = bannerLiveDataM
 
     private val repository: HomeRepository by lazy { HomeRepository() }
 

@@ -9,6 +9,7 @@ import com.wh.wanandroid.R
 import com.wh.wanandroid.adapter.HomeBannerAdapter
 import com.wh.wanandroid.base.BaseFragment
 import com.wh.wanandroid.databinding.FragmentHomeBinding
+import com.wh.wanandroid.ui.list.HomeListFragment
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
@@ -21,7 +22,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun initView() {
         activity?.supportFragmentManager
             ?.beginTransaction()
-            ?.replace(R.id.homeListContainer, ListFragment::class.java, null)
+            ?.replace(R.id.homeListContainer, HomeListFragment(), null)
             ?.commit()
     }
 
