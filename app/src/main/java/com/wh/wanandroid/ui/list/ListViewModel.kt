@@ -6,15 +6,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.wh.wanandroid.base.App
 import com.wh.wanandroid.base.BaseViewModel
-import com.wh.wanandroid.model.list.HomeDataFeed
+import com.wh.wanandroid.bean.list.ListBean
 import com.wh.wanandroid.net.NetResult
 import com.wh.wanandroid.ui.home.HomeRepository
 import kotlinx.coroutines.launch
 
 class ListViewModel : BaseViewModel() {
 
-    private val listLiveDataM = MutableLiveData<HomeDataFeed>()
-    val listLiveData: LiveData<HomeDataFeed>
+    private val listLiveDataM = MutableLiveData<ListBean>()
+    val listLiveData: LiveData<ListBean>
         get() = listLiveDataM
 
 

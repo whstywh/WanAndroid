@@ -12,7 +12,7 @@ import com.wh.wanandroid.databinding.FragmentHomeBinding
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by lazy { ViewModelProvider(this)[HomeViewModel::class.java] }
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?) =
         FragmentHomeBinding.inflate(inflater, container, false)
@@ -26,10 +26,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     override fun initData() {
-        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         viewModel.getBanner()
-        viewModel.bannerLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.bannerLiveData.observe(viewLifecycleOwner) {
             binding.banner.setAdapter(HomeBannerAdapter(it))
-        })
+        }
     }
 }

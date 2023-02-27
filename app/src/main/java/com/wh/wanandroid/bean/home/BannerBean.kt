@@ -1,6 +1,6 @@
-package com.wh.wanandroid.model.home
+package com.wh.wanandroid.bean.home
 
-data class BannerFeed(
+data class BannerBean(
     val desc: String,
     val id: Int,
     val imagePath: String,

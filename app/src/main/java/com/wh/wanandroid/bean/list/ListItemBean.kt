@@ -1,6 +1,6 @@
-package com.wh.wanandroid.model.list
+package com.wh.wanandroid.bean.list
 
-data class DatasBean(
+data class ListItemBean(
     val niceDate: String,
     val title: String,
     val desc: String,

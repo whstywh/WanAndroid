@@ -1,7 +1,7 @@
 package com.wh.wanandroid.adapter
 
 import coil.load
-import com.wh.wanandroid.model.home.BannerFeed
+import com.wh.wanandroid.bean.home.BannerBean
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 
@@ -10,10 +10,10 @@ import com.youth.banner.holder.BannerImageHolder
  * wh
  * desc：
  */
-class HomeBannerAdapter(mData :List<BannerFeed>) :BannerImageAdapter<BannerFeed>(mData) {
+class HomeBannerAdapter(mData :List<BannerBean>) :BannerImageAdapter<BannerBean>(mData) {
     override fun onBindView(
         holder: BannerImageHolder?,
-        data: BannerFeed?,
+        data: BannerBean?,
         position: Int,
         size: Int
     ) {
