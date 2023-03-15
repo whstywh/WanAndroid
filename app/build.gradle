@@ -66,7 +66,7 @@ dependencies {
     //SmartRefreshLayout
     var refresh_version = "2.0.5"
     implementation("io.github.scwang90:refresh-layout-kernel:$refresh_version")      //核心必须依赖
-    implementation("io.github.scwang90:refresh-header-radar:$refresh_version")       //雷达刷新头
+    implementation("io.github.scwang90:refresh-header-classics:$refresh_version")    //经典刷新头
     implementation("io.github.scwang90:refresh-footer-classics:$refresh_version")    //经典加载
     //paging3
     implementation 'androidx.paging:paging-runtime:3.1.1'

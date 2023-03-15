@@ -1,7 +1,7 @@
 package com.wh.wanandroid.adapter
 
 import coil.load
-import com.wh.wanandroid.bean.home.BannerBean
+import com.wh.wanandroid.bean.BannerBean
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 

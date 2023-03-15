@@ -1,10 +1,8 @@
 package com.wh.wanandroid.base
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
-import com.wh.wanandroid.databinding.ActivityMainBinding
 
 abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
@@ -13,7 +11,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = getViewBinding()
-        if (this::binding.isInitialized) {
+        if (::binding.isInitialized) {
             setContentView(binding.root)
         }
         initView()

@@ -22,47 +22,11 @@ class HomeListFragment : BaseFragment<FragmentHomeListBinding>() {
         return FragmentHomeListBinding.inflate(inflater, container, false)
     }
 
-    private var mHomeListAdapter: HomeListAdapter? = null
-
     override fun initView() {
-
-        context?.let {
-            mHomeListAdapter = HomeListAdapter(it)
-            binding.homeList.apply {
-                layoutManager = LinearLayoutManager(context)
-                adapter = mHomeListAdapter
-            }
-        }
-
-        binding.homeRefreshLayout.setOnRefreshListener {
-            mHomeListAdapter?.refresh()
-        }
-
-        lifecycleScope.launch {
-            viewModel.getPagingData().collect { pagingData ->
-                mHomeListAdapter?.submitData(pagingData)
-            }
-        }
-
-        mHomeListAdapter?.addLoadStateListener {
-            when (it.refresh) {
-                is LoadState.Loading -> {
-                }
-                is LoadState.NotLoading -> {
-                    binding.homeRefreshLayout.finishRefresh(true)
-                }
-                is LoadState.Error -> {
-                    binding.homeRefreshLayout.finishRefresh(false)
-                }
-            }
-        }
-
-        mHomeListAdapter?.refresh()
 
     }
 
     override fun initData() {
-
     }
 
 }

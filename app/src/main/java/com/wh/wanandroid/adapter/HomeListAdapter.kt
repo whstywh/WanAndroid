@@ -2,11 +2,12 @@ package com.wh.wanandroid.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.wh.wanandroid.bean.list.ListItemBean
+import com.wh.wanandroid.bean.ListItemBean
 import com.wh.wanandroid.databinding.LayoutHomeListItemBinding
 
 class HomeListAdapter(context: Context) :
@@ -43,6 +44,11 @@ class HomeListAdapter(context: Context) :
                     date.text = it.niceDate
                     chapterName.text = it.chapterName
                     author.text = it.author ?: it.shareUser
+
+                    tag.visibility = if (it.tag?.isNotEmpty() == true) {
+                        tag.text = it.tag[0].name
+                        View.VISIBLE
+                    } else View.GONE
                 }
             }
         }
