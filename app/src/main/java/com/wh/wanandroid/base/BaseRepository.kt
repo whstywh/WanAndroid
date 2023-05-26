@@ -1,5 +1,6 @@
 package com.wh.wanandroid.base
 
+import com.wh.wanandroid.bean.BaseFeedBean
 import com.wh.wanandroid.net.NetResult
 import com.wh.wanandroid.net.DealException
 import com.wh.wanandroid.net.ResultException

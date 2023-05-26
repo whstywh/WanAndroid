@@ -11,23 +11,18 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/menu_fragment_account"
-        android:name="com.wh.wanandroid.ui.AccountFragment"
-        android:label="fragment_account"
-        tools:layout="@layout/fragment_account" />
+        android:id="@+id/menu_fragment_nav"
+        android:name="com.wh.wanandroid.ui.NavFragment"
+        android:label="fragment_nav"
+        tools:layout="@layout/fragment_nav" />
     <fragment
         android:id="@+id/menu_fragment_project"
         android:name="com.wh.wanandroid.ui.ProjectFragment"
         android:label="fragment_project"
         tools:layout="@layout/fragment_project" />
     <fragment
-        android:id="@+id/menu_fragment_square"
-        android:name="com.wh.wanandroid.ui.SquareFragment"
-        android:label="fragment_square"
-        tools:layout="@layout/fragment_square" />
-    <fragment
-        android:id="@+id/menu_fragment_system"
-        android:name="com.wh.wanandroid.ui.SystemFragment"
-        android:label="fragment_system"
-        tools:layout="@layout/fragment_system" />
+        android:id="@+id/menu_fragment_my"
+        android:name="com.wh.wanandroid.ui.MyFragment"
+        android:label="fragment_my"
+        tools:layout="@layout/fragment_my" />
 </navigation>

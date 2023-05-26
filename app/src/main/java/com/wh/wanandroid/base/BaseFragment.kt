@@ -4,23 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragment<VB : ViewBinding> : Fragment() {
+abstract class BaseFragment : Fragment() {
 
-    protected lateinit var binding: VB
     private var mConstraintLayout: ConstraintLayout? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        binding = getViewBinding(inflater, container)
-        return if (this::binding.isInitialized) {
-            return binding.root
-        } else null
-    }
+    ): View? = inflater.inflate(getLayoutID(), container, false)
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,7 +24,8 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         initData()
     }
 
-    abstract fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): VB
+    abstract fun getLayoutID(): Int
+
     abstract fun initView()
     abstract fun initData()
 

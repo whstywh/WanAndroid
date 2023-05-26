@@ -1,7 +1,8 @@
 package com.wh.wanandroid.adapter
 
-import coil.load
+import android.content.Context
 import com.wh.wanandroid.bean.BannerBean
+import com.wh.wanandroid.utils.loadImage
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 
@@ -10,13 +11,15 @@ import com.youth.banner.holder.BannerImageHolder
  * wh
  * desc：
  */
-class HomeBannerAdapter(mData :List<BannerBean>) :BannerImageAdapter<BannerBean>(mData) {
+class HomeBannerAdapter(private val context: Context?, mData: List<BannerBean> = emptyList()) :
+    BannerImageAdapter<BannerBean>(mData) {
+
     override fun onBindView(
         holder: BannerImageHolder?,
         data: BannerBean?,
         position: Int,
         size: Int
     ) {
-       holder?.imageView?.load(data?.imagePath)
+        holder?.imageView?.loadImage(context, data?.imagePath)
     }
 }

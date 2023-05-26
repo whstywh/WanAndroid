@@ -2,23 +2,18 @@ package com.wh.wanandroid.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewbinding.ViewBinding
 
-abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
-
-    protected lateinit var binding: VB
+abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = getViewBinding()
-        if (::binding.isInitialized) {
-            setContentView(binding.root)
-        }
+        setContentView(getLayoutID())
         initView()
         initData()
     }
 
-    abstract fun getViewBinding(): VB
+    abstract fun getLayoutID(): Int
+
     abstract fun initView()
     abstract fun initData()
 }

@@ -7,8 +7,6 @@ import com.wh.wanandroid.bean.HomeListBean
 import com.wh.wanandroid.bean.ListItemBean
 import com.wh.wanandroid.net.NetResult
 import com.wh.wanandroid.net.RetrofitClient
-import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 
 class HomeRepository : BaseRepository() {
@@ -25,7 +23,7 @@ class HomeRepository : BaseRepository() {
 
                 override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ListItemBean> {
                     val page = params.key ?: 1
-                    val result = if (page == 1) getList(page) else getHomeList(page)
+                    val result =  getHomeList(page)
                     return if (result is NetResult.Success) {
                         val prevKey = if (page > 1) page - 1 else null
                         val nextKey =
@@ -39,32 +37,7 @@ class HomeRepository : BaseRepository() {
         }).flow
     }
 
-    private suspend fun getList(count: Int): NetResult<HomeListBean> {
-        return coroutineScope {
-            val topList = async {
-                getHomeTopList()
-            }
-            val itemList = async {
-                getHomeList(count)
-            }
-            val top = topList.await()
-            val item = itemList.await()
-            if (top is NetResult.Error && item is NetResult.Error) {
-                item
-            } else if (top is NetResult.Success && item is NetResult.Success) {
-                top.data.datas?.addAll(item.data.datas ?: emptyList())
-                top
-            } else {
-                if (top is NetResult.Error) {
-                    item
-                } else {
-                    top
-                }
-            }
-        }
-    }
-
-    private suspend fun getHomeTopList(): NetResult<HomeListBean> =
+     suspend fun getHomeTopList(): NetResult<List<ListItemBean>> =
         requestTryCatch { handleResponse(RetrofitClient.instance.create().getHomeTopList()) }
 
 

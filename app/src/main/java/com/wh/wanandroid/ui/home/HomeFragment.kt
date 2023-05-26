@@ -1,51 +1,71 @@
 package com.wh.wanandroid.ui.home
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.wh.wanandroid.R
 import com.wh.wanandroid.adapter.HomeBannerAdapter
 import com.wh.wanandroid.adapter.HomeListAdapter
+import com.wh.wanandroid.adapter.HomoTopListAdapter
 import com.wh.wanandroid.base.BaseFragment
 import com.wh.wanandroid.databinding.FragmentHomeBinding
+import com.wh.wanandroid.utils.viewBinding
 import kotlinx.coroutines.launch
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragment() {
 
     private val viewModel: HomeViewModel by lazy { ViewModelProvider(this)[HomeViewModel::class.java] }
 
-    override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?) =
-        FragmentHomeBinding.inflate(inflater, container, false)
+    private val viewBinding by viewBinding(FragmentHomeBinding::bind)
+    override fun getLayoutID() = R.layout.fragment_home
 
     override fun initView() {
         context?.let { context ->
-            val mHomeListAdapter = HomeListAdapter(context)
 
-            binding.homeList.apply {
-                adapter = mHomeListAdapter
+            val mBannerAdapter = HomeBannerAdapter(this@HomeFragment.context)
+            val mTopListAdapter = HomoTopListAdapter(context)
+            val mItemListAdapter = HomeListAdapter(context).apply {
+                addLoadStateListener(::loadStateListener)
+            }
+
+            viewBinding.homeList.apply {
+                val config = ConcatAdapter.Config.Builder().setIsolateViewTypes(false).build()
+                adapter = ConcatAdapter(
+                    config,
+                    arrayListOf(mTopListAdapter, mItemListAdapter)
+                )
                 layoutManager = LinearLayoutManager(context)
             }
 
-            mHomeListAdapter.addLoadStateListener(::loadStateListener)
-
-            binding.homeSmartRefresh.setEnableLoadMore(false)
-            binding.homeSmartRefresh.setOnRefreshListener {
-                viewModel.getBanner()
-                mHomeListAdapter.refresh()
+            viewBinding.homeSmartRefresh.apply {
+                setEnableLoadMore(false)
+                setOnRefreshListener {
+                    viewModel.getBanner()
+                    viewModel.getHomeTopList()
+                    mItemListAdapter.refresh()
+                }
             }
 
             lifecycleScope.launch {
-                viewModel.getPagingData().collect { it ->
-                    mHomeListAdapter.submitData(it)
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    viewModel.getPagingData().collect { it ->
+                        mItemListAdapter.submitData(it)
+                    }
                 }
             }
-        }
 
-        viewModel.bannerLiveData.observe(viewLifecycleOwner) {
-            binding.banner.setAdapter(HomeBannerAdapter(it))
+            viewModel.bannerLiveData.observe(viewLifecycleOwner) {
+                mBannerAdapter.setDatas(it)
+            }
+
+            viewModel.topLiveData.observe(viewLifecycleOwner) {
+                mTopListAdapter.submitList(it)
+            }
         }
     }
 
@@ -57,10 +77,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             is LoadState.Loading -> {
             }
             is LoadState.NotLoading -> {
-                binding.homeSmartRefresh.finishRefresh(true)
+                viewBinding.homeSmartRefresh.finishRefresh(true)
             }
             is LoadState.Error -> {
-                binding.homeSmartRefresh.finishRefresh(false)
+                viewBinding.homeSmartRefresh.finishRefresh(false)
             }
         }
     }

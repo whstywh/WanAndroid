@@ -1,5 +1,6 @@
 package com.wh.wanandroid.net
 
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -26,6 +27,7 @@ class RetrofitClient private constructor() {
         .connectTimeout(10, TimeUnit.SECONDS)
         .readTimeout(10, TimeUnit.SECONDS)
         .addInterceptor(HttpLoggingInterceptor())
+        .addNetworkInterceptor(StethoInterceptor())
         .build()
 
     fun create(): ApiService {
