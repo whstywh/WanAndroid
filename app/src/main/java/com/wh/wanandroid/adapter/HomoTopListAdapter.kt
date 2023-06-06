@@ -29,4 +29,8 @@ class HomoTopListAdapter(context: Context) :
         val binding = LayoutHomeListItemBinding.inflate(inflater, parent, false)
         return HomeListViewHolder(binding)
     }
+
+    override fun getItemViewType(position: Int): Int {
+        return 1
+    }
 }

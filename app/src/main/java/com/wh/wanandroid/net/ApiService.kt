@@ -1,10 +1,10 @@
 package com.wh.wanandroid.net
 
-import com.wh.wanandroid.bean.BaseFeedBean
-import com.wh.wanandroid.bean.BannerBean
-import com.wh.wanandroid.bean.HomeListBean
-import com.wh.wanandroid.bean.ListItemBean
+import com.wh.wanandroid.bean.*
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
@@ -20,4 +20,15 @@ interface ApiService {
 
     @GET("/article/top/json")
     suspend fun getHomeTopList(): BaseFeedBean<List<ListItemBean>>
+
+    @FormUrlEncoded
+    @POST("/user/register")
+    suspend fun register(): BaseFeedBean<LoginBean>
+
+    @FormUrlEncoded
+    @POST("/user/login")
+    suspend fun login(
+        @Field("username") username: String?,
+        @Field("password") password: String?
+    ): BaseFeedBean<LoginBean>
 }

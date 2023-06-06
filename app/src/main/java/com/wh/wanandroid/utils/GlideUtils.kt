@@ -25,3 +25,9 @@ fun ImageView.loadImage(context: Context?, imgUrl: Any?) {
         Glide.with(it).load(imgUrl).into(this)
     }
 }
+
+fun ImageView.loadImageGif(context: Context?, imgUrl: Any?) {
+    context?.let {
+        Glide.with(it).asGif().load(imgUrl).into(this)
+    }
+}

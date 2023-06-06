@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_project" />
     <fragment
         android:id="@+id/menu_fragment_my"
-        android:name="com.wh.wanandroid.ui.MyFragment"
+        android:name="com.wh.wanandroid.ui.my.MyFragment"
         android:label="fragment_my"
         tools:layout="@layout/fragment_my" />
 </navigation>

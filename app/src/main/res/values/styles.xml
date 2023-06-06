@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--ShapeAbleImageView 圆形 style-->
+    <style name="shapeImage_anchor_style">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+        <item name="android:theme">@style/Theme.WanAndroid</item>
+    </style>
+
+
+    <style name="editText_style">
+        <!--文字被选中时背景色-->
+        <item name="android:textColorHighlight">@color/alabaster</item>
+        <!--光标-->
+        <item name="android:textCursorDrawable">@drawable/shape_edittext_cursor</item>
+        <!--控制器-->
+        <item name="colorControlActivated">@color/cerulean</item>
+    </style>
+
+    <!--MaterialButton-->
+    <style name="Material_Button_style" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:gravity">center</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:theme">@style/Theme.WanAndroid</item>
+    </style>
+</resources>
