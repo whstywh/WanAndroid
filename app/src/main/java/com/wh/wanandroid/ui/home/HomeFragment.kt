@@ -24,7 +24,6 @@ class HomeFragment : BaseFragment() {
 
     private val viewBinding by viewBinding(FragmentHomeBinding::bind)
 
-
     override fun getLayoutID() = R.layout.fragment_home
 
     override fun initView() {
@@ -52,18 +51,24 @@ class HomeFragment : BaseFragment() {
                 layoutManager = LinearLayoutManager(context)
             }
 
-            viewModel.bannerLiveData.observe(viewLifecycleOwner) {
-                mBannerAdapter.submitList(arrayListOf(it))
-            }
-
-            viewModel.topLiveData.observe(viewLifecycleOwner) {
-                mTopListAdapter.submitList(it)
-            }
-
             viewLifecycleOwner.lifecycleScope.launch {
                 viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    viewModel.pager.collectLatest {
-                        mItemListAdapter.submitData(it)
+                    launch {
+                        viewModel.bannerState.collectLatest {
+                            mBannerAdapter.submitList(arrayListOf(it))
+                        }
+                    }
+
+                    launch {
+                        viewModel.topState.collectLatest {
+                            mTopListAdapter.submitList(it)
+                        }
+                    }
+
+                    launch {
+                        viewModel.pager.collectLatest {
+                            mItemListAdapter.submitData(it)
+                        }
                     }
                 }
             }
