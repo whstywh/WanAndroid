@@ -1,23 +1,21 @@
 package com.wh.wanandroid.ui
 
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.wh.wanandroid.R
-import com.wh.wanandroid.base.BaseActivity
 import com.wh.wanandroid.databinding.ActivityMainBinding
-import com.wh.wanandroid.utils.viewBinding
 
-class MainActivity : BaseActivity() {
+class MainActivity : AppCompatActivity() {
 
-    private val viewBinding by viewBinding(ActivityMainBinding::bind)
-    override fun getLayoutID() = R.layout.activity_main
+    private lateinit var binding : ActivityMainBinding
 
-    override fun initView() {
-        viewBinding.navView.run {
-            setupWithNavController(viewBinding.navHostFragment.getFragment<NavHostFragment>().navController)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.navView.run {
+            setupWithNavController(binding.navHostFragment.getFragment<NavHostFragment>().navController)
         }
-    }
-
-    override fun initData() {
     }
 }

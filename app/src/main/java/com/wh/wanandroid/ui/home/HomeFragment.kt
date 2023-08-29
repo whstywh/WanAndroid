@@ -1,51 +1,65 @@
 package com.wh.wanandroid.ui.home
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.wh.wanandroid.R
 import com.wh.wanandroid.adapter.HomeBannerListAdapter
 import com.wh.wanandroid.adapter.HomeListAdapter
 import com.wh.wanandroid.adapter.HomoTopListAdapter
-import com.wh.wanandroid.base.BaseFragment
 import com.wh.wanandroid.databinding.FragmentHomeBinding
-import com.wh.wanandroid.utils.viewBinding
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
-class HomeFragment : BaseFragment() {
+class HomeFragment : Fragment() {
 
-    private val viewModel: HomeViewModel by lazy { ViewModelProvider(this)[HomeViewModel::class.java] }
+    private val viewModel: HomeViewModel by viewModels()
 
-    private val viewBinding by viewBinding(FragmentHomeBinding::bind)
+    private var _binding: FragmentHomeBinding? = null
 
-    override fun getLayoutID() = R.layout.fragment_home
+    private val mBannerAdapter by lazy { HomeBannerListAdapter(context) }
+    private val mTopListAdapter by lazy { HomoTopListAdapter(context) }
+    private val mItemListAdapter by lazy {
+        HomeListAdapter(context).apply {
+            addLoadStateListener(::loadStateListener)
+        }
+    }
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return _binding?.root
+    }
 
-    override fun initView() {
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         context?.let { context ->
 
-            val mBannerAdapter = HomeBannerListAdapter(context)
-            val mTopListAdapter = HomoTopListAdapter(context)
-            val mItemListAdapter = HomeListAdapter(context).apply {
-                addLoadStateListener(::loadStateListener)
-            }
-
-            viewBinding.homeSmartRefresh.setEnableLoadMore(false)
-            viewBinding.homeSmartRefresh.setOnRefreshListener {
+            _binding?.homeSmartRefresh?.setEnableLoadMore(false)
+            _binding?.homeSmartRefresh?.setOnRefreshListener {
                 viewModel.getBanner()
                 viewModel.getHomeTopList()
                 mItemListAdapter.refresh()
             }
-
-            viewBinding.homeList.apply {
-                val config = ConcatAdapter.Config.Builder().setIsolateViewTypes(false).build()
+            _binding?.homeList?.apply {
                 adapter = ConcatAdapter(
-                    config,
+                    ConcatAdapter.Config.Builder().setIsolateViewTypes(false).build(),
                     arrayListOf(mBannerAdapter, mTopListAdapter, mItemListAdapter)
                 )
                 layoutManager = LinearLayoutManager(context)
@@ -54,19 +68,19 @@ class HomeFragment : BaseFragment() {
             viewLifecycleOwner.lifecycleScope.launch {
                 viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                     launch {
-                        viewModel.bannerState.collectLatest {
+                        viewModel.bannerState.collect {
                             mBannerAdapter.submitList(arrayListOf(it))
                         }
                     }
 
                     launch {
-                        viewModel.topState.collectLatest {
+                        viewModel.topState.collect {
                             mTopListAdapter.submitList(it)
                         }
                     }
 
                     launch {
-                        viewModel.pager.collectLatest {
+                        viewModel.pager.distinctUntilChanged().collect {
                             mItemListAdapter.submitData(it)
                         }
                     }
@@ -75,18 +89,15 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    override fun initData() {
-    }
-
     private fun loadStateListener(it: CombinedLoadStates) {
         when (it.refresh) {
             is LoadState.Loading -> {
             }
             is LoadState.NotLoading -> {
-                viewBinding.homeSmartRefresh.finishRefresh(true)
+                _binding?.homeSmartRefresh?.finishRefresh(true)
             }
             is LoadState.Error -> {
-                viewBinding.homeSmartRefresh.finishRefresh(false)
+                _binding?.homeSmartRefresh?.finishRefresh(false)
             }
         }
     }

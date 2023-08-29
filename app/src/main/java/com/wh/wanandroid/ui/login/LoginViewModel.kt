@@ -17,7 +17,10 @@ class LoginViewModel : BaseViewModel() {
     init {
         viewModelScope.launch {
             channel.receiveAsFlow().collectLatest {
-                if (it.request) {
+                if (it.request &&
+                    it.username?.isNotEmpty() == true &&
+                    it.password?.isNotEmpty() == true
+                ) {
                     it.login()
                 } else {
                     it.isReady()

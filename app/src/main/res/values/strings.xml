@@ -3,12 +3,13 @@
 
     <!--main-->
     <string name="nav_home_name">首页</string>
-    <string name="nav_project_name">项目</string>
+    <string name="nav_video_list_name">视频</string>
     <string name="nav_nav_name">导航</string>
     <string name="nav_my_name">我的</string>
 
     <!--myFragment-->
     <string name="login_name">登录/注册</string>
+    <string name="my_video">视频详情</string>
 
     <!--loginActivity-->
     <string name="pass_login_username">请输入账号</string>

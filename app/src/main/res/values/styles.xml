@@ -8,7 +8,6 @@
         <item name="android:theme">@style/Theme.WanAndroid</item>
     </style>
 
-
     <style name="editText_style">
         <!--文字被选中时背景色-->
         <item name="android:textColorHighlight">@color/alabaster</item>

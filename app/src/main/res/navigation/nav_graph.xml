@@ -16,11 +16,6 @@
         android:label="fragment_nav"
         tools:layout="@layout/fragment_nav" />
     <fragment
-        android:id="@+id/menu_fragment_project"
-        android:name="com.wh.wanandroid.ui.ProjectFragment"
-        android:label="fragment_project"
-        tools:layout="@layout/fragment_project" />
-    <fragment
         android:id="@+id/menu_fragment_my"
         android:name="com.wh.wanandroid.ui.my.MyFragment"
         android:label="fragment_my"

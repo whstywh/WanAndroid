@@ -16,7 +16,7 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "se
 
 object DataStoreUtils {
 
-    private val username = stringPreferencesKey("username")
+    val username = stringPreferencesKey("username")
 
     //未登录
     suspend fun isNoLogin(context: Context?): Boolean {

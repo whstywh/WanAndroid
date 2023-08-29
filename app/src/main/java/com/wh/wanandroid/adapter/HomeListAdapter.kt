@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.wh.wanandroid.bean.ListItemBean
 import com.wh.wanandroid.databinding.LayoutHomeListItemBinding
 
-class HomeListAdapter(context: Context) :
+class HomeListAdapter(context: Context?) :
     PagingDataAdapter<ListItemBean, HomeListViewHolder>(object :
         DiffUtil.ItemCallback<ListItemBean>() {
 

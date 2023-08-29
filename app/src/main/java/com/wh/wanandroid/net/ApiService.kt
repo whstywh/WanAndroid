@@ -6,6 +6,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Url
 
 interface ApiService {
     companion object {
@@ -31,4 +32,10 @@ interface ApiService {
         @Field("username") username: String?,
         @Field("password") password: String?
     ): BaseFeedBean<LoginBean>
+
+
+    //https://api.apiopen.top/api/getHaoKanVideo?page=1&size=10
+    @GET
+    suspend fun getVideoList(@Url url: String): VideoListBean
+
 }

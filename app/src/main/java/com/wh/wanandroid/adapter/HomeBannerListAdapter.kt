@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wh.wanandroid.bean.BannerBean
 import com.wh.wanandroid.databinding.LayoutHomeBannerItemBinding
 
-class HomeBannerListAdapter(context: Context) :
+class HomeBannerListAdapter(context: Context?) :
     ListAdapter<List<BannerBean>, HomeBannerViewHolder>(object :
         DiffUtil.ItemCallback<List<BannerBean>>() {
         override fun areItemsTheSame(

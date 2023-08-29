@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.wh.wanandroid.bean.ListItemBean
 import com.wh.wanandroid.databinding.LayoutHomeListItemBinding
 
-class HomoTopListAdapter(context: Context) :
+class HomoTopListAdapter(context: Context?) :
     ListAdapter<ListItemBean, HomeListViewHolder>(object : DiffUtil.ItemCallback<ListItemBean>() {
         override fun areItemsTheSame(oldItem: ListItemBean, newItem: ListItemBean): Boolean {
             return oldItem.id == newItem.id

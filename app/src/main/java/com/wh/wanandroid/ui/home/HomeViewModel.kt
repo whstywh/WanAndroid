@@ -7,17 +7,17 @@ import com.wh.wanandroid.bean.BannerBean
 import com.wh.wanandroid.bean.ListItemBean
 import com.wh.wanandroid.net.NetResult
 import com.wh.wanandroid.utils.showToastKT
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class HomeViewModel : BaseViewModel() {
 
-    private val _bannerState = MutableSharedFlow<List<BannerBean>>()
-    val bannerState: SharedFlow<List<BannerBean>> get() = _bannerState
+    private val _bannerState = MutableStateFlow<List<BannerBean>>(emptyList())
+    val bannerState: StateFlow<List<BannerBean>> get() = _bannerState
 
-    private val _topState = MutableSharedFlow<List<ListItemBean>>()
-    val topState: SharedFlow<List<ListItemBean>> get() = _topState
+    private val _topState = MutableStateFlow<List<ListItemBean>>(emptyList())
+    val topState: StateFlow<List<ListItemBean>> get() = _topState
 
 
     init {

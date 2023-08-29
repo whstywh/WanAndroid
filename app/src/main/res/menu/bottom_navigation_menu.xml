@@ -6,11 +6,6 @@
         android:icon="@drawable/svg_page_1"
         android:title="@string/nav_home_name" />
     <item
-        android:id="@+id/menu_fragment_project"
-        android:enabled="true"
-        android:icon="@drawable/svg_page_2"
-        android:title="@string/nav_project_name" />
-    <item
         android:id="@+id/menu_fragment_nav"
         android:enabled="true"
         android:icon="@drawable/svg_page_3"

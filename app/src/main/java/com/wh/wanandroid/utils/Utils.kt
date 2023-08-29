@@ -14,3 +14,16 @@ inline fun <reified T : BaseActivity> Context.startActivityKT(block: Intent.() -
     startActivity(Intent(this, T::class.java).apply(block))
 }
 
+/**
+ * 获取屏幕宽度
+ */
+fun Context.getScreenWidth(): Int {
+    return resources.displayMetrics.widthPixels
+}
+
+/**
+ * 获取屏幕高度
+ */
+fun Context.getScreenHeight(): Int {
+    return resources.displayMetrics.heightPixels
+}
