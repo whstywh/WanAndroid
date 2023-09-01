@@ -71,7 +71,7 @@ class FloatWindowService : Service() {
             setImageDrawable(
                 ContextCompat.getDrawable(
                     this@FloatWindowService,
-                    R.drawable.login_error
+                    R.drawable.svg_login_error
                 )
             )
             setOnClickListener {
@@ -128,7 +128,7 @@ class FloatWindowService : Service() {
         }
     }
 
-    private fun showFloatingWindow() {
+    internal fun showFloatingWindow() {
         if (Settings.canDrawOverlays(this)) {
 
             val closeParams = ConstraintLayout.LayoutParams(50, 50).apply {
@@ -189,6 +189,5 @@ class FloatWindowService : Service() {
             return false
         }
     }
-
 
 }

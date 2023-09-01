@@ -33,7 +33,7 @@
         app:layout_constraintStart_toEndOf="@id/tag"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginStart="0dp"
-        tools:text="作者作者" />
+        tools:text="作者" />
 
 
     <TextView

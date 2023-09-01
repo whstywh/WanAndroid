@@ -2,6 +2,8 @@ package com.wh.wanandroid.base
 
 import android.app.Application
 import com.facebook.stetho.Stetho
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.Logger
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -35,6 +37,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        Logger.addLogAdapter(AndroidLogAdapter())
         //Stetho
         Stetho.initializeWithDefaults(this)
     }

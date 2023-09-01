@@ -84,4 +84,6 @@ dependencies {
     //datastore
     implementation 'com.github.bumptech.glide:okhttp3-integration:4.12.0'
     api "androidx.datastore:datastore-preferences:1.0.0"
+    //logger
+    implementation 'com.orhanobut:logger:2.2.0'
 }

@@ -4,12 +4,10 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
-import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.wh.wanandroid.R
-import com.wh.wanandroid.base.App
 import com.wh.wanandroid.base.BaseActivity
 import com.wh.wanandroid.databinding.ActivityLoginBinding
 import com.wh.wanandroid.utils.*
@@ -77,7 +75,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     setImageDrawable(
                         ContextCompat.getDrawable(
                             this@LoginActivity,
-                            R.drawable.login_success
+                            R.drawable.svg_login_success
                         )
                     )
                     visibility = View.VISIBLE
@@ -95,7 +93,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     setImageDrawable(
                         ContextCompat.getDrawable(
                             this@LoginActivity,
-                            R.drawable.login_error
+                            R.drawable.svg_login_error
                         )
                     )
                     visibility = View.VISIBLE
